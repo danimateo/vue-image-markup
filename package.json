@@ -1,11 +1,11 @@
 {
   "name": "vue-image-markup",
-  "version": "3.1.10",
+  "version": "3.1.11",
   "description": "vue-image-markup will provide you to edit uploaded image easily and save it.",
   "main": "src/Editor.vue",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lionix-team/vue-image-markup.git"
+    "url": "git+https://github.com/danimateo/vue-image-markup.git"
   },
   "keywords": [
     "image",
