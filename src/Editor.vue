@@ -49,6 +49,7 @@ export default {
       fontSize: 32,
       croppedImage: false,
       history: [],
+      svgString: '',
     };
   },
   mounted() {
@@ -69,6 +70,14 @@ export default {
         }
       });
       return findedObject;
+    },
+    changeSvgString(svgString) {
+      this.svgString = svgString;
+      this.set(this.currentActiveTool);
+    },
+    changeStroke(strokeProperty) {
+      this.strokeWidth = strokeProperty;
+      this.set(this.currentActiveTool);
     },
     changeColor(colorProperty) {
       this.color = colorProperty;
@@ -167,7 +176,7 @@ export default {
           };
           this.customRect(type, this.params);
           break;
-        case 'comment':
+        case 'vector':
           this.cancelCroppingImage();
           this.currentActiveTool = type;
           this.params = {
@@ -185,6 +194,7 @@ export default {
             strokeDashArray: params && params.strokeDashArray ? params.strokeDashArray : false,
             borderRadius: params && params.borderRadius ? params.borderRadius : 0,
             id: params && params.id ? params.id : '',
+            svgString: params && params.svgString ? params.svgString : this.svgString,
           };
           this.customRect(type, this.params);
           break;
@@ -260,13 +270,14 @@ export default {
           this.croppedImage = true;
           new CropImage(this.canvas, true, false, false, this.params);
           break;
-        case 'eraser':
+        case 'eraser': {
           this.currentActiveTool = type;
           let inst = this;
           this.canvas.isDrawingMode = false;
           inst.selectable = true;
           this.canvas.on('mouse:down', this.handleErase);
           break;
+        }
         default:
       }
     },
