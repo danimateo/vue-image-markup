@@ -48,8 +48,14 @@ export default {
       strokeWidth: 7,
       fontSize: 32,
       croppedImage: false,
+<<<<<<< HEAD
       history: []
     }
+=======
+      history: [],
+      svgString: '',
+    };
+>>>>>>> fba13b2dbc2c79eb4ec49ec4680e19e840cf629b
   },
   mounted() {
     this.canvas = new fabric.Canvas(this.editorId)
@@ -69,6 +75,14 @@ export default {
         }
       })
       return findedObject
+    },
+    changeSvgString(svgString) {
+      this.svgString = svgString;
+      this.set(this.currentActiveTool);
+    },
+    changeStroke(strokeProperty) {
+      this.strokeWidth = strokeProperty;
+      this.set(this.currentActiveTool);
     },
     changeColor(colorProperty) {
       this.color = colorProperty
@@ -162,6 +176,7 @@ export default {
             noScaleCache: params && params.noScaleCache ? params.noScaleCache : false,
             strokeDashArray: params && params.strokeDashArray ? params.strokeDashArray : false,
             borderRadius: params && params.borderRadius ? params.borderRadius : 0,
+<<<<<<< HEAD
             id: params && params.id ? params.id : ''
           }
           this.customRect(type, this.params)
@@ -169,6 +184,15 @@ export default {
         case 'comment':
           this.cancelCroppingImage()
           this.currentActiveTool = type
+=======
+            id: params && params.id ? params.id : '',
+          };
+          this.customRect(type, this.params);
+          break;
+        case 'vector':
+          this.cancelCroppingImage();
+          this.currentActiveTool = type;
+>>>>>>> fba13b2dbc2c79eb4ec49ec4680e19e840cf629b
           this.params = {
             fill: params && params.fill ? params.fill : 'transparent',
             stroke: params && params.stroke ? params.stroke : this.color,
@@ -183,10 +207,18 @@ export default {
             noScaleCache: params && params.noScaleCache ? params.noScaleCache : false,
             strokeDashArray: params && params.strokeDashArray ? params.strokeDashArray : false,
             borderRadius: params && params.borderRadius ? params.borderRadius : 0,
+<<<<<<< HEAD
             id: params && params.id ? params.id : ''
           }
           this.customRect(type, this.params)
           break
+=======
+            id: params && params.id ? params.id : '',
+            svgString: params && params.svgString ? params.svgString : this.svgString,
+          };
+          this.customRect(type, this.params);
+          break;
+>>>>>>> fba13b2dbc2c79eb4ec49ec4680e19e840cf629b
         case 'line':
           this.cancelCroppingImage()
           this.currentActiveTool = type
