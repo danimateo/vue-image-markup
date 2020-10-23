@@ -271,6 +271,8 @@ export default {
           break
         case 'eraser':
           this.handleErase()
+          this.currentActiveTool = type
+          this.drag()
           break
         default:
       }
